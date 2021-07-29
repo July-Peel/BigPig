@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Static\" />
+    <Folder Include="Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FullControls" Version="1.5.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
   </ItemGroup>
 
 </Project>

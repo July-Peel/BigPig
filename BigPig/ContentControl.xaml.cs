@@ -1,5 +1,4 @@
-﻿using BigPig.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace BigPig
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// ContentControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : FullControls.SystemComponents.AvalonWindow
+    public partial class ContentControl : UserControl
     {
-        public MainWindow()
+        public ContentControl()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }

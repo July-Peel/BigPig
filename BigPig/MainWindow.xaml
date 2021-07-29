@@ -1,12 +1,90 @@
-﻿<Window x:Class="BigPig.MainWindow"
+﻿<fc:AvalonWindow x:Class="BigPig.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:fc="http://devpelux.github.io/fullcontrols"
+                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BigPig"
+                 MergeTitlebarAndContent="True"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="大猪" Height="650" Width="1000">
+    <materialDesign:Transitioner SelectedIndex="0" x:Name="TransitionerPage">
+        <Grid>
+            <Rectangle Fill="#FFC7D7E0"
+                   Margin="-59,41,0,0"
+                   MinWidth="646"
+                   Height="20"
+                   RenderTransformOrigin="0.5,0.5"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-25.996" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="#FFE2D9D9"
+                   Margin="239,0,0,0"
+                   MinWidth="642"
+                   Height="20"
+                   RenderTransformOrigin="0.5,0.5"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-25.996" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="#FFEAEAEA"
+                   Margin="-50,0,0,0"
+                   MinWidth="1050"
+                   Height="20"
+                   RenderTransformOrigin="1,0.5"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-25.996" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="#FFEAEAEA"
+                   Margin="297,126,0,0"
+                   MinWidth="937"
+                   Height="20"
+                   RenderTransformOrigin="1,0.5"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-25.996" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
 
-    </Grid>
-</Window>
+            <Button Content="下一个" Command="{Binding OpenNext}" Width="100"
+                    CommandParameter="{Binding ElementName=TransitionerPage}"/>
+        </Grid>
+
+        <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+            <ContentPresenter  Content="{Binding UserContentOne}"/>
+        </materialDesign:TransitionerSlide>
+        <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+            <ContentPresenter  Content="{Binding UserContentTwo}"/>
+        </materialDesign:TransitionerSlide>
+    </materialDesign:Transitioner>
+</fc:AvalonWindow>
