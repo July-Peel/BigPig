@@ -16,4 +16,10 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>bin\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

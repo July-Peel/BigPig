@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:fc="http://devpelux.github.io/fullcontrols"
                  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:BigPig"
                  MergeTitlebarAndContent="True"
         mc:Ignorable="d"
         Title="大猪" Height="650" Width="1000">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowsLoad}" CommandParameter="{Binding ElementName=TransitionerPage}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:Transitioner SelectedIndex="0" x:Name="TransitionerPage">
         <Grid>
             <Rectangle Fill="#FFC7D7E0"
@@ -76,8 +82,7 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <Button Content="下一个" Command="{Binding OpenNext}" Width="100"
-                    CommandParameter="{Binding ElementName=TransitionerPage}"/>
+            <Button Content="下一个" Command="{Binding OpenNext}" Width="100" Cursor="Hand"/>
         </Grid>
 
         <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
