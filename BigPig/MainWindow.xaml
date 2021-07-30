@@ -17,10 +17,15 @@
     </i:Interaction.Triggers>
     <materialDesign:Transitioner SelectedIndex="0" x:Name="TransitionerPage">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Rectangle Fill="#FFC7D7E0"
                    Margin="-59,41,0,0"
                    MinWidth="646"
-                   Height="20"
+                   Height="20" Panel.ZIndex="-1"
                    RenderTransformOrigin="0.5,0.5"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top">
@@ -36,7 +41,7 @@
             <Rectangle Fill="#FFE2D9D9"
                    Margin="239,0,0,0"
                    MinWidth="642"
-                   Height="20"
+                   Height="20" Panel.ZIndex="-1"
                    RenderTransformOrigin="0.5,0.5"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top">
@@ -52,7 +57,7 @@
             <Rectangle Fill="#FFEAEAEA"
                    Margin="-50,0,0,0"
                    MinWidth="1050"
-                   Height="20"
+                   Height="20" Panel.ZIndex="-1"
                    RenderTransformOrigin="1,0.5"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top">
@@ -68,7 +73,7 @@
             <Rectangle Fill="#FFEAEAEA"
                    Margin="297,126,0,0"
                    MinWidth="937"
-                   Height="20"
+                   Height="20" Panel.ZIndex="-1"
                    RenderTransformOrigin="1,0.5"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top">
@@ -81,8 +86,48 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
+            <Border Grid.Row="0" Width="70" Height="70" CornerRadius="70">
+                <Border.Background>
+                    <ImageBrush ImageSource="/BigPig;component/Static/1.jpg"/>
+                </Border.Background>
+            </Border>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="20"
+                     Width="350" Padding="8"
+                     materialDesign:HintAssist.Hint="搜索的内容" Cursor="IBeam"/>
+                <Button Content="搜索" Command="{Binding OpenSearch}" Height="45" FontSize="20" Margin="20 0 0 0"/>
+            </StackPanel>
 
-            <Button Content="下一个" Command="{Binding OpenNext}" Width="100" Cursor="Hand"/>
+            <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
+                <Button Width="120" Height="120" Margin="30" Background="#70FFFFFF" BorderBrush="#20FFFFFF"
+                        Command="{Binding OpenComics}"
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}" Cursor="Hand">
+                    <StackPanel>
+                        <Image Source="/BigPig;component/Static/CC.png" Width="50" Height="50"/>
+                        <TextBlock Text="CC漫画" Foreground="Black" FontSize="15" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Width="120" Height="120" Margin="30" Background="#70FFFFFF" BorderBrush="#20FFFFFF"
+                        Command="{Binding OpenCollect}"
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}" Cursor="Hand">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="PiggyBank" Foreground="Black" Width="50" Height="50"/>
+                        <TextBlock Text="我的收藏" Foreground="Black" FontSize="15" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Width="120" Height="120" Margin="30" Background="#70FFFFFF" BorderBrush="#20FFFFFF"
+                        Command="{Binding OpenHistory}"
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}" Cursor="Hand">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Pig" Foreground="Black" Width="50" Height="50"/>
+                        <TextBlock Text="浏览记录" Foreground="Black" FontSize="15" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Button>
+
+            </WrapPanel>
+
+            <!--<Button Content="下一个" Command="{Binding OpenNext}" Width="100" Cursor="Hand"/>-->
         </Grid>
 
         <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">

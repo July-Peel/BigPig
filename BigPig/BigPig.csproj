@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Static\" />
-    <Folder Include="Model\" />
+    <None Remove="Static\1.jpg" />
+    <None Remove="Static\2.jpg" />
+    <None Remove="Static\CC.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FullControls" Version="1.5.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.34" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
   </ItemGroup>
 
@@ -20,6 +22,12 @@
     <Reference Include="System.Windows.Interactivity">
       <HintPath>bin\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Static\1.jpg" />
+    <Resource Include="Static\2.jpg" />
+    <Resource Include="Static\CC.png" />
   </ItemGroup>
 
 </Project>

@@ -5,12 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static BigPig.Model.MenuModel;
 
 namespace BigPig.ViewModel
 {
     public class MenuViewModel : UserViewModel
     {
         private static Transitioner Tran = null;
+
+        private List<MenuDisVision> _Menus;
+        public List<MenuDisVision> Menus
+        {
+            get => _Menus;
+            set
+            {
+                _Menus = value;
+                RaisePropertyChanged("Menus");
+            }
+        }
+
         public MenuViewModel(Transitioner T)
         {
             Tran = T;

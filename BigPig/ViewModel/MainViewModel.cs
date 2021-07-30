@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf.Transitions;
+﻿using BigPig.Unit;
+using MaterialDesignThemes.Wpf.Transitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,12 +56,30 @@ namespace BigPig.ViewModel
             });
         }
 
-        public ICommand OpenNext => new AnotherCommand(_OpenNext);
-        private void _OpenNext(object obj)
+        //打开漫画主页
+        public ICommand OpenComics => new AnotherCommand(_OpenComics);
+        private void _OpenComics(object obj)
         {
-            if (Tran.SelectedIndex == 0) Tran.SelectedIndex = 1;
-            else if (Tran.SelectedIndex == 1) Tran.SelectedIndex = 2;
-            else Tran.SelectedIndex = 0;
+            new CoCoComics().GetSearchItem();
+        }
+        //搜索
+        public ICommand OpenSearch => new AnotherCommand(_OpenSearch);
+        private void _OpenSearch(object obj)
+        {
+
+
+
+        }
+        //打开收藏
+        public ICommand OpenCollect => new AnotherCommand(_OpenCollect);
+        private void _OpenCollect(object obj)
+        {
+
+        }
+        //打开历史浏览
+        public ICommand OpenHistory => new AnotherCommand(_OpenHistory);
+        private void _OpenHistory(object obj)
+        {
 
         }
     }
