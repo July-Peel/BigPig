@@ -1,9 +1,14 @@
 ﻿using MaterialDesignThemes.Wpf.Transitions;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using static BigPig.Model.MenuModel;
 
@@ -24,10 +29,44 @@ namespace BigPig.ViewModel
             }
         }
 
-        public MenuViewModel(Transitioner T)
+
+        public MenuViewModel()
         {
-            Tran = T;
+            Task.Factory.StartNew(delegate
+            {
+                Thread.Sleep(500);
+                Assembly assm = Assembly.GetExecutingAssembly();
+                Stream istr = assm.GetManifestResourceStream("BigPig.Static.bainian.json");
+                StreamReader sr = new System.IO.StreamReader(istr);
+                string str = sr.ReadToEnd();
+                sr.Dispose();
+                sr.Close();
+                App.Current.Dispatcher.Invoke(delegate {
+                    Menus = JsonConvert.DeserializeObject<List<MenuDisVision>>(str);
+                });
+
+            });
         }
+
+        public ICommand MenuLefteClick => new AnotherCommand(_MenuLefteClick);
+        private void _MenuLefteClick(object obj)
+        {
+            try
+            {
+
+
+
+
+
+                MessageBox.Show("6666");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
         public ICommand OpenNext => new AnotherCommand(_OpenNext);
         private void _OpenNext(object obj)
         {

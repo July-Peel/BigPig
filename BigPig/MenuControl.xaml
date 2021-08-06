@@ -4,22 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BigPig"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White" x:Name="MentPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Button Content="返回上一级" Width="100"
-                VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                VerticalAlignment="Bottom" HorizontalAlignment="Left" Cursor="Hand"/>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Center">
-            <ListBox 
-                Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}">
-                
-                
-                <ListBoxItem Content="Mercury" />
-            </ListBox>
+            <ItemsControl ItemsSource="{Binding Menus}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ListBox ItemsSource="{Binding Path=MenuItems}" x:Name="menuFlow"
+                            Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ItemName}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ElementName=MentPage,Path=DataContext.MenuLefteClick}"
+                                                               CommandParameter="{Binding ElementName=menuFlow,Path=SelectedItem}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </WrapPanel>
     </Grid>
 </UserControl>

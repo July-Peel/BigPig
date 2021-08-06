@@ -1,5 +1,4 @@
-﻿using BigPig.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BigPig
+namespace BigPig.ItemControl
 {
     /// <summary>
-    /// MenuControl.xaml 的交互逻辑
+    /// RedControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MenuControl : UserControl
+    public partial class ColorControl : UserControl
     {
-        public MenuControl()
+        public ColorControl(Color c)
         {
             InitializeComponent();
-            DataContext = new MenuViewModel();
+            LoadUser.Background = new SolidColorBrush(c);
         }
     }
 }

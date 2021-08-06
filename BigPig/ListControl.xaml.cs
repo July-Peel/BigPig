@@ -1,5 +1,4 @@
-﻿using BigPig.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace BigPig
 {
     /// <summary>
-    /// MenuControl.xaml 的交互逻辑
+    /// ListControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MenuControl : UserControl
+    public partial class ListControl : UserControl
     {
-        public MenuControl()
+        public ListControl()
         {
             InitializeComponent();
-            DataContext = new MenuViewModel();
         }
     }
 }

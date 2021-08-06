@@ -1,5 +1,7 @@
-﻿using BigPig.Unit;
+﻿using BigPig.ItemControl;
+using BigPig.Unit;
 using MaterialDesignThemes.Wpf.Transitions;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using static BigPig.Model.MenuModel;
 
 namespace BigPig.ViewModel
 {
@@ -52,7 +56,7 @@ namespace BigPig.ViewModel
             App.Current.Dispatcher.Invoke(delegate
             {
                 UserContentOne= new ContentControl() { DataContext = new ContentViewModel(Tran) };
-                UserContentTwo= new MenuControl() { DataContext = new MenuViewModel(Tran) };
+                //UserContentTwo= new MenuControl() { DataContext = new MenuViewModel(Tran) };
             });
         }
 
@@ -60,7 +64,20 @@ namespace BigPig.ViewModel
         public ICommand OpenComics => new AnotherCommand(_OpenComics);
         private void _OpenComics(object obj)
         {
-            new CoCoComics().GetSearchItem();
+            //Task.Factory.StartNew(delegate
+            //{
+            //    App.Current.Dispatcher.Invoke(delegate { UserContentOne = new ColorControl(Color.FromRgb(255, 0, 0)); });
+            //    Thread.Sleep(300);
+            //    App.Current.Dispatcher.Invoke(delegate { Tran.SelectedIndex = 1; });
+            //    Thread.Sleep(2500);
+            //    App.Current.Dispatcher.Invoke(delegate { Tran.SelectedIndex = 0; });
+            //});
+
+
+            List<MenuDisVision> abc = new BainianComics().GetSearchItem();
+
+            string bca = JsonConvert.SerializeObject(abc);
+
         }
         //搜索
         public ICommand OpenSearch => new AnotherCommand(_OpenSearch);
