@@ -12,6 +12,6 @@
                 Command="{Binding OpenNext}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="18" FontWeight="Bold"/>
+                   FontSize="18" FontWeight="Bold" Cursor="Hand"/>
     </Grid>
 </UserControl>
