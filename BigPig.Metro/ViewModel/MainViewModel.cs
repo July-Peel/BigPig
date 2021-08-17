@@ -63,16 +63,55 @@ namespace BigPig.Metro.ViewModel
         }
 
         private bool _OpenMenu = false;
-        public bool OpenMenu { get => _OpenMenu; set { _OpenMenu = value; RaisePropertyChanged("OpenMenu"); } }
+        public bool OpenMenu
+        {
+            get => _OpenMenu;
+            set
+            {
+                _OpenMenu = value;
+                if (!value) UserContentMenu = null;
+                RaisePropertyChanged("OpenMenu");
+            }
+        }
 
         private bool _OpenList = false;
-        public bool OpenList { get => _OpenList; set { _OpenList = value; RaisePropertyChanged("OpenList"); } }
+        public bool OpenList
+        {
+            get => _OpenList;
+            set
+            {
+                _OpenList = value;
+                if (!value) UserContentList = null;
+                RaisePropertyChanged("OpenList");
+            }
+        }
 
         private bool _OpenAnthology = false;
-        public bool OpenAnthology { get => _OpenAnthology; set { _OpenAnthology = value; RaisePropertyChanged("OpenAnthology"); } }
+        public bool OpenAnthology
+        {
+            get => _OpenAnthology;
+            set
+            {
+                _OpenAnthology = value;
+                if (!value) UserContentAnthology = null;
+                RaisePropertyChanged("OpenAnthology");
+            }
+        }
 
         private bool _OpenWatch = false;
-        public bool OpenWatch { get => _OpenWatch; set { _OpenWatch = value; RaisePropertyChanged("OpenWatch"); } }
+        public bool OpenWatch
+        {
+            get => _OpenWatch;
+            set
+            {
+                _OpenWatch = value;
+                if (!value)
+                {
+                    UserContentWatch = null;
+                }
+                RaisePropertyChanged("OpenWatch");
+            }
+        }
         #endregion
 
 
@@ -82,28 +121,23 @@ namespace BigPig.Metro.ViewModel
         {
             try
             {
-                Task.Factory.StartNew(delegate { GetinitializeControl(); });
+                //Task.Factory.StartNew(delegate { GetinitializeControl(); });
             }
             catch
             {
             }
         }
-        private void GetinitializeControl()
-        {
-            Thread.Sleep(500);
-            App.Current.Dispatcher.Invoke(delegate
-            {
-                UserContentMenu = new MenuControl() { DataContext = new MenuViewModel(this) };
-            });
-        }
-
 
         public ICommand openMenuClick => new AnotherCommand(_openMenuClick);
         private void _openMenuClick(object obj)
         {
             try
             {
-                OpenMenu = true;
+
+                BainianComics.GetSearchAnthology("/comic/16085.html");
+
+                //UserContentMenu = new MenuControl() { DataContext = new MenuViewModel(this) };
+                //OpenMenu = true;
             }
             catch
             {

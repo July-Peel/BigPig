@@ -4,20 +4,51 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BigPig.Metro.ItemControl"
+              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <ListBox ItemsSource="{Binding Path=ListData}">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding Path=ImagePath}"/>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                        <TextBlock Text="{Binding Path=NewAnthology}"/>
-                        <TextBlock Text="{Binding Path=Update}"/>
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="PageList">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowsLoad}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Path=ListData}" Name="ListPage">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 10">
+                        <Image Source="{Binding Path=ImagePath}" Width="180" Margin="50 0 30 0"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Path=Name}" FontSize="23" FontWeight="Bold" Margin="0 10 0 10"/>
+                            <TextBlock Text="{Binding Path=NewAnthology}" Margin="0 10 0 10"/>
+                            <TextBlock Text="{Binding Path=Update}" Margin="0 10 0 10"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ElementName=PageList,Path=DataContext.WatchClcik}"
+                                           CommandParameter="{Binding ElementName=ListPage,Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="{Binding PageTxt}" Foreground="White"
+                       FontSize="16"
+                       VerticalAlignment="Center" Margin="0 0 20 0"/>
+            <Button Content="上一页" Style="{DynamicResource MahApps.Styles.Button.Square}" Height="30"/>
+            <ComboBox ItemsSource="{Binding PageList}"
+                      SelectedItem="{Binding SelectPage}"
+                      Width="100" Height="30" Margin="10 0 10 0"/>
+            <Button Content="下一页" Style="{DynamicResource MahApps.Styles.Button.Square}" Height="30" Margin="0 0 50 0"/>
+        </StackPanel>
+    </Grid>
 </UserControl>

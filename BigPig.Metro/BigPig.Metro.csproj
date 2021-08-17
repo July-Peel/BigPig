@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <None Remove="Static\bainian.json" />
+    <None Remove="Static\bainianlist.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Static\bainian.json" />
+    <EmbeddedResource Include="Static\bainianlist.json" />
   </ItemGroup>
 
   <ItemGroup>

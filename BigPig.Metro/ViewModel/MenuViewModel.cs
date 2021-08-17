@@ -84,7 +84,7 @@ namespace BigPig.Metro.ViewModel
         public ICommand OpenNext => new AnotherCommand(_OpenNext);
         private void _OpenNext(object obj)
         {
-            main.UserContentList = new ListControl() { DataContext = new ListViewModel() };
+            main.UserContentList = new ListControl() { DataContext = new ListViewModel(main) };
             main.OpenList = true;
         }
     }

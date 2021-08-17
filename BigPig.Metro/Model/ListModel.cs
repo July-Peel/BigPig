@@ -12,5 +12,6 @@ namespace BigPig.Metro.Model
         public string Name { get; set; }//名称
         public string NewAnthology { get; set; }//最新集
         public string Update { get; set; }//更新时间
+        public string ContentPath { get; set; }//内容地址
     }
 }
