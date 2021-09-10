@@ -76,12 +76,20 @@ namespace BigPig.Unit
                 HTMLDocument.LoadHtml(HtmlText);
 
                 HtmlNodeCollection PageOne = HTMLDocument.DocumentNode.SelectNodes("//div[@class=\"pagination\"]");
-                PageTxt = PageOne[0].InnerText.Split(new string[] { "页"},StringSplitOptions.None)[2];
 
+                if (PageOne[0].InnerText.Contains("页"))
+                {
+                    PageTxt = PageOne[0].InnerText.Split(new string[] { "页" }, StringSplitOptions.None)[2];
+                }
+                else
+                {
+                    PageTxt = PageOne[0].InnerText;
+                }
 
                 HTMLDocument.LoadHtml(PageOne[0].InnerHtml);
                 HtmlNodeCollection PageTwo = HTMLDocument.DocumentNode.SelectNodes("//a[@class=\"page-link\"]");
-                Index = Convert.ToInt32(PageTwo[PageTwo.Count - 2].InnerText);
+                if (PageTwo != null)
+                    Index = Convert.ToInt32(PageTwo[PageTwo.Count - 2].InnerText);
 
 
                 HTMLDocument.LoadHtml(HtmlText);
@@ -90,32 +98,33 @@ namespace BigPig.Unit
 
                 HtmlNodeCollection ListTwo = HTMLDocument.DocumentNode.SelectNodes("//li");
                 List<ListModel> ListData = new List<ListModel>();
-
-                foreach (HtmlNode item in ListTwo)
+                if (ListTwo != null)
                 {
+                    foreach (HtmlNode item in ListTwo)
+                    {
 
-                    HtmlDocument DocumentTwo = new HtmlDocument();
-                    DocumentTwo.LoadHtml(item.InnerHtml);
+                        HtmlDocument DocumentTwo = new HtmlDocument();
+                        DocumentTwo.LoadHtml(item.InnerHtml);
 
-                    ListModel m = new ListModel();
-                    HtmlNodeCollection ListThree = DocumentTwo.DocumentNode.SelectNodes("//a");
-                    m.ContentPath = ListThree[0].Attributes[0].Value;
+                        ListModel m = new ListModel();
+                        HtmlNodeCollection ListThree = DocumentTwo.DocumentNode.SelectNodes("//a");
+                        m.ContentPath = ListThree[0].Attributes[0].Value;
 
-                    HtmlNodeCollection ListFour = DocumentTwo.DocumentNode.SelectNodes("//img");
-                    m.ImagePath = ListFour[0].Attributes.FirstOrDefault(a => a.Name == "src").Value;
+                        HtmlNodeCollection ListFour = DocumentTwo.DocumentNode.SelectNodes("//img");
+                        m.ImagePath = ListFour[0].Attributes.FirstOrDefault(a => a.Name == "src").Value;
 
-                    HtmlNodeCollection ListFive = DocumentTwo.DocumentNode.SelectNodes("//span");
-                    m.NewAnthology = "最新话："+ ListFive[0].InnerText;
+                        HtmlNodeCollection ListFive = DocumentTwo.DocumentNode.SelectNodes("//span");
+                        m.NewAnthology = "最新话：" + ListFive[0].InnerText;
 
-                    HtmlNodeCollection ListSix = DocumentTwo.DocumentNode.SelectNodes("//p");
-                    m.Name = ListSix[0].InnerText;
+                        HtmlNodeCollection ListSix = DocumentTwo.DocumentNode.SelectNodes("//p");
+                        m.Name = ListSix[0].InnerText;
 
-                    HtmlNodeCollection ListSeven = DocumentTwo.DocumentNode.SelectNodes("//em");
-                    m.Update = "更新时间："+ ListSeven[0].InnerText.Replace(" ", "").Replace("\r", "").Replace("\n", "");
+                        HtmlNodeCollection ListSeven = DocumentTwo.DocumentNode.SelectNodes("//em");
+                        m.Update = "更新时间：" + ListSeven[0].InnerText.Replace(" ", "").Replace("\r", "").Replace("\n", "");
 
-                    ListData.Add(m);
+                        ListData.Add(m);
+                    }
                 }
-
 
                 return ListData;
 

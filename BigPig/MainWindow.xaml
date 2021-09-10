@@ -34,7 +34,6 @@
 
         </mah:FlyoutsControl>
     </mah:MetroWindow.Flyouts>
-
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="{Binding ElementName=main, Path=ActualHeight}">
         <Grid>
             <Grid.RowDefinitions>

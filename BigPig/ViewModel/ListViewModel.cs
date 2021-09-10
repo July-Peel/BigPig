@@ -52,10 +52,10 @@ namespace BigPig.ViewModel
         private string _SelectPage = string.Empty;
         public string SelectPage { get => _SelectPage; set { _SelectPage = value; RaisePropertyChanged("SelectPage"); } }
 
-        private int _PageNum = 66;
+        private int _PageNum = 0;
         public int PageNum { get => _PageNum; set { _PageNum = value; RaisePropertyChanged("PageNum"); } }
 
-        private string _PageTxt= "共6523条数据";
+        private string _PageTxt= string.Empty;
         public string PageTxt { get => _PageTxt; set { _PageTxt = value; RaisePropertyChanged("PageTxt"); } }
 
 

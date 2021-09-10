@@ -48,8 +48,6 @@ namespace BigPig.ViewModel
                 sr.Close();
                 App.Current.Dispatcher.Invoke(delegate {
                     Menus = JsonConvert.DeserializeObject<List<MenuData>>(str);
-
-
                     Menus.ForEach(a =>
                     {
                         a.PanelColor = RandomColor();
@@ -64,7 +62,6 @@ namespace BigPig.ViewModel
                         }
 
                     });
-
                 });
 
             });
