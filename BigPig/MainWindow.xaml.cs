@@ -1,4 +1,5 @@
 ﻿using BigPig.ViewModel;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace BigPig
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : FullControls.SystemComponents.AvalonWindow
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {

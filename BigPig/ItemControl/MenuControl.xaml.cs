@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BigPig.Metro.ItemControl
+namespace BigPig.ItemControl
 {
     /// <summary>
-    /// AnthologyControl.xaml 的交互逻辑
+    /// MenuControl.xaml 的交互逻辑
     /// </summary>
-    public partial class AnthologyControl : UserControl
+    public partial class MenuControl : UserControl
     {
-        public AnthologyControl()
+        public MenuControl()
         {
             InitializeComponent();
         }

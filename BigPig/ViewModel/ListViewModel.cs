@@ -1,5 +1,6 @@
-﻿using BigPig.Metro.ItemControl;
-using BigPig.Metro.Model;
+﻿using BigPig.ItemControl;
+using BigPig.Model;
+using BigPig.Unit;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BigPig.Metro.ViewModel
+namespace BigPig.ViewModel
 {
     public class ListViewModel: UserViewModel
     {
         public static MainViewModel main = null;
-
-        public ListViewModel(MainViewModel Ma)
+        private string PageUrl = string.Empty;
+        public ListViewModel(MainViewModel Ma,string Pu)
         {
             main = Ma;
+            PageUrl = Pu;
         }
 
 
@@ -65,21 +67,25 @@ namespace BigPig.Metro.ViewModel
                 Task.Factory.StartNew(delegate {
 
                     Thread.Sleep(500);
-                    Assembly assm = Assembly.GetExecutingAssembly();
-                    Stream istr = assm.GetManifestResourceStream("BigPig.Metro.Static.bainianlist.json");
-                    StreamReader sr = new System.IO.StreamReader(istr);
-                    string str = sr.ReadToEnd();
-                    sr.Dispose();
-                    sr.Close();
+                    //Assembly assm = Assembly.GetExecutingAssembly();
+                    //Stream istr = assm.GetManifestResourceStream("BigPig.Static.bainianlist.json");
+                    //StreamReader sr = new System.IO.StreamReader(istr);
+                    //string str = sr.ReadToEnd();
+                    //sr.Dispose();
+                    //sr.Close();
                     App.Current.Dispatcher.Invoke(delegate
                     {
-                        ListData = JsonConvert.DeserializeObject<List<ListModel>>(str);
+                        //ListData = JsonConvert.DeserializeObject<List<ListModel>>(str);
+                        int index = 0;
+                        string pagetxt = string.Empty;
+                        ListData = BainianComics.GetSreachList(PageUrl, out index, out pagetxt);
+                        PageNum = index;
+                        PageTxt = pagetxt;
 
                         for (int i = 1; i <= PageNum; i++)
                         {
                             PageList.Add($"第{i}页");
                         }
-
                         SelectPage = "第1页";
                     });
                 });
@@ -96,8 +102,8 @@ namespace BigPig.Metro.ViewModel
             try
             {
                 ListModel m = (ListModel)obj;
-                main.UserContentWatch = new AnthologyControl() { DataContext = new AnthologyViewModel() };
-                main.OpenWatch = true;
+                main.UserContentAnthology = new AnthologyControl() { DataContext = new AnthologyViewModel(main, m.ContentPath) };
+                main.OpenAnthology = true;
             }
             catch { }
         }

@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="BigPig.Metro.ItemControl.MenuControl"
+﻿<UserControl x:Class="BigPig.ItemControl.MenuControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BigPig.Metro.ItemControl"
+             xmlns:local="clr-namespace:BigPig.ItemControl"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
@@ -21,7 +21,8 @@
                     <DataTemplate>
                     <mah:Tile Margin="3" Width="{Binding PanelWidth}" Height="100"
                                           mah:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                              Command="{Binding ElementName=menu,Path=DataContext.OpenNext}"            
+                              Command="{Binding ElementName=menu,Path=DataContext.OpenNext}"
+                              CommandParameter="{Binding Path=ItemValue}"
                               Background="{Binding PanelColor}"
                                           HorizontalTitleAlignment="Right">
                             <TextBlock Text="{Binding Path=ItemName}" FontSize="30"/>

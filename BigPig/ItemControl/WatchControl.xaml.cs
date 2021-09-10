@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace BigPig.ItemControl
 {
     /// <summary>
-    /// RedControl.xaml 的交互逻辑
+    /// WatchControl.xaml 的交互逻辑
     /// </summary>
-    public partial class ColorControl : UserControl
+    public partial class WatchControl : UserControl
     {
-        public ColorControl(Color c)
+        public WatchControl()
         {
             InitializeComponent();
-            LoadUser.Background = new SolidColorBrush(c);
         }
     }
 }

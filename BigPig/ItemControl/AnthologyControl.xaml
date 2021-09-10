@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="BigPig.ItemControl.AnthologyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:BigPig.ItemControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="Anthology">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowsLoad}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="{Binding ElementName=Anthology, Path=ActualHeight}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Path=Anthology.ImagePath}" Margin="20 0 0 0" Width="230"/>
+                <StackPanel VerticalAlignment="Center" Margin="50 0 0 0">
+                    <TextBlock Text="{Binding Path=Anthology.Name}" Foreground="White" FontSize="30" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Path=Anthology.gengxinzhi}" Foreground="White" FontSize="20" Margin="0 20 0 5"/>
+                    <TextBlock Text="{Binding Path=Anthology.manhuafenlei}" Foreground="White" FontSize="20" Margin="0 5 0 5"/>
+                    <TextBlock Text="{Binding Path=Anthology.manhuazuozhe}" Foreground="White" FontSize="20" Margin="0 5 0 5"/>
+                    <TextBlock Text="{Binding Path=Anthology.manhuadiqu}" Foreground="White" FontSize="20" Margin="0 5 0 5"/>
+                    <TextBlock Text="{Binding Path=Anthology.zuihougengxin}" Foreground="White" FontSize="20" Margin="0 5 0 5"/>
+                </StackPanel>
+            </StackPanel>
+
+            <ItemsControl ItemsSource="{Binding Path=Anthology.AnthologyBtn}" Grid.Row="1" Margin="0 50 0 0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Path=Name}" Style="{DynamicResource MahApps.Styles.Button.Square}"
+                                Command="{Binding ElementName=Anthology,Path=DataContext.OpenWatch}"
+                                CommandParameter="{Binding Path=URL}"
+                                Height="35" MinWidth="80" Margin="10"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+           
+        </Grid>
+    </ScrollViewer>
+</UserControl>

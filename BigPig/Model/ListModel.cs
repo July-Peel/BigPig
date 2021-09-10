@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BigPig.Metro.Model
+namespace BigPig.Model
 {
     public class ListModel
     {

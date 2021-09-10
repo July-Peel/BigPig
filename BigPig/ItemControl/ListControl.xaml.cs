@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BigPig.Metro.ItemControl
+namespace BigPig.ItemControl
 {
     /// <summary>
     /// ListControl.xaml 的交互逻辑
