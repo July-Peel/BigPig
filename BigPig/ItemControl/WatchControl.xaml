@@ -12,7 +12,7 @@
             <i:InvokeCommandAction Command="{Binding WindowsLoad}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="{Binding ElementName=WatchImage, Path=ActualHeight}">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" PanningMode="Both" Height="{Binding ElementName=WatchImage, Path=ActualHeight}">
         <ItemsControl ItemsSource="{Binding ImageList}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

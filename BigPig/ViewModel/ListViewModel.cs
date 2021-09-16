@@ -101,8 +101,8 @@ namespace BigPig.ViewModel
         {
             try
             {
-                ListModel m = (ListModel)obj;
-                main.UserContentAnthology = new AnthologyControl() { DataContext = new AnthologyViewModel(main, m.ContentPath) };
+                string ContentPath=(string)obj;
+                main.UserContentAnthology = new AnthologyControl() { DataContext = new AnthologyViewModel(main, ContentPath) };
                 main.OpenAnthology = true;
             }
             catch { }

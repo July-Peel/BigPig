@@ -19,26 +19,32 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Path=ListData}" Name="ListPage">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="0 10 0 10">
-                        <Image Source="{Binding Path=ImagePath}" Width="180" Margin="50 0 30 0"/>
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Path=Name}" FontSize="23" FontWeight="Bold" Margin="0 10 0 10"/>
-                            <TextBlock Text="{Binding Path=NewAnthology}" Margin="0 10 0 10"/>
-                            <TextBlock Text="{Binding Path=Update}" Margin="0 10 0 10"/>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding ElementName=PageList,Path=DataContext.WatchClcik}"
-                                           CommandParameter="{Binding ElementName=ListPage,Path=SelectedItem}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </ListBox>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" PanningMode="Both">
+            <ItemsControl ItemsSource="{Binding Path=ListData}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Padding="0" BorderThickness="0" Command="{Binding ElementName=PageList,Path=DataContext.WatchClcik}"
+                                CommandParameter="{Binding Path=ContentPath}">
+                            <StackPanel Orientation="Horizontal" Margin="0 10 0 10" Width="{Binding ElementName=PageList, Path=ActualWidth}">
+                                <Image Source="{Binding Path=ImagePath}" Width="180" Margin="50 0 30 0"  HorizontalAlignment="Left"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Path=Name}" FontSize="23" FontWeight="Bold" Margin="0 10 0 10"/>
+                                    <TextBlock Text="{Binding Path=NewAnthology}" Margin="0 10 0 10"/>
+                                    <TextBlock Text="{Binding Path=Update}" Margin="0 10 0 10"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock Text="{Binding PageTxt}" Foreground="White"

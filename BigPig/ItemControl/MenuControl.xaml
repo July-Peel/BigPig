@@ -8,7 +8,7 @@
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White" x:Name="menu">
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="{Binding ElementName=menu, Path=ActualHeight}">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" PanningMode="Both" Height="{Binding ElementName=menu, Path=ActualHeight}">
         <ItemsControl ItemsSource="{Binding Menus}">
 
                 <ItemsControl.ItemsPanel>
